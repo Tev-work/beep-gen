@@ -7,6 +7,14 @@ import sys
 import audiogen
 import itertools
 
-beep_silence = itertools.chain(audiogen.beep(), audiogen.silence(50), audiogen.beep(), audiogen.silence(50))
+beep_silence = itertools.chain(
+    audiogen.beep(),
+    audiogen.silence(0.5),
+    audiogen.beep(),
+    audiogen.silence(8),
+)
 
-audiogen.sampler.write_wav(sys.stdout, beep_silence)
+# audiogen.sampler.write_wav(sys.stdout, beep_silence)
+
+with open("output.wav", "wb") as f:
+    audiogen.sampler.write_wav(f, beep_silence)
